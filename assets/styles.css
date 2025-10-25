@@ -1,0 +1,274 @@
+@font-face { font-family: 'Montserrat'; src: url('./fonts/static/Montserrat-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+
+@font-face { font-family: 'Montserrat'; src: url('./fonts/static/Montserrat-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+
+@font-face { font-family: 'Montserrat'; src: url('./fonts/static/Montserrat-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+
+* { font-family: 'Montserrat', sans-serif; }
+
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #c0c0c0;
+    --accent-color: #0f4c3a;
+    --hover-color: #0f4c3a;  
+    --transition-speed: 0.4s;
+    --shadow-color: #000000; 
+    --rev-color: #bf5521;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    list-style: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: var(--transition-speed);
+}
+
+nav ul li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition-speed);
+    position: relative;
+}
+
+nav ul li:hover, .tab.active {
+    color: var(--hover-color);
+}
+
+
+nav ul li::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    background-color: var(--hover-color);
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%) scaleX(0);
+    transition: var(--transition-speed);
+}
+
+nav ul li:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+}
+.avatar {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    opacity: 0;
+    transform: scale(0.8);
+    animation: avatarFadeIn 1s forwards;
+}
+
+@keyframes avatarFadeIn {
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition-speed);
+}
+
+.content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.social-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.social-table th, .social-table td {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-table th {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+.social-table a {
+    color: seagreen;  
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-speed);
+    text-shadow: 0px 0px 5px var(--shadow-color); 
+}
+
+.social-table a:hover {
+    color: white;
+    text-shadow: 0px 0px 10px var(--shadow-color); 
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 20px;
+}
+
+.bw-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.bw-image:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.github-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    border: 2px solid var(--accent-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.github-button:hover {
+    background-color: var(--hover-color);
+    color: #fff;
+}
+@media screen and (max-width: 768px) {
+    body {
+        zoom: 0.85;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+    }
+
+    nav ul {
+        justify-content: space-around;
+    }
+
+    .image-gallery {
+        gap: 2px;
+    }
+} 
+
+.crypto-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.crypto-item:hover {
+    transform: scale(1.02);
+}
+
+.crypto-text {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 12px;
+    font-family: monospace;
+    color: white;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.crypto-logo {
+    height: 24px;
+    width: 24px;
+}
+
+.crypto-name {
+    min-width: 160px; 
+    text-align: left;
+    font-weight: bold;
+}
+
+.crypto-address {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.copy-btn, .visit-btn {
+    text-decoration: none;
+    background-color: #004d40;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover, .visit-btn:hover {
+    background-color: #00695c;
+}
+
+.crypto-buttons {
+    display: flex;
+    gap: 8px;
+}
